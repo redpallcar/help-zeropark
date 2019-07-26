@@ -1,0 +1,6 @@
+/target/
+/bin/
+
+/.idea/
+*.iml
+src/main/webapp/WEB-INF/log
