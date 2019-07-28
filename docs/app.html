@@ -1,0 +1,92 @@
+<html lang="ko-KR">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <title>제로파크 도움말</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <style>
+    .ui-title {
+        margin: 0.0em !important;
+      }
+    .help-img {
+      width:100%;
+      border:1px solid darkgray;
+      margin-top: 10px;
+    }
+    .app-arrow-d {
+      text-align: center;
+      padding:5px;
+    }
+  </style>
+</head>
+<body>
+
+<div data-role="page"
+>
+<!--     data-add-back-btn="true"-->
+<!--     data-back-btn-text="돌아가기"-->
+<!--     class="jqm-demos" data-quicklinks="true"-->
+
+  <div data-role="header" Zstyle="text-overflow: clip;margin-left: 1em;margin-right: 1em;">
+    <h5 class="header-title"></h5>
+  </div>
+
+
+
+
+  <div role="main" class="ui-content">
+
+
+
+  </div>
+
+
+</div>
+
+</body>
+
+<script>
+  function searchToObject() {
+    var pairs = window.location.search.substring(1).split("&"),
+      obj = {},
+      pair,
+      i;
+    for ( i in pairs ) {
+      if ( pairs[i] === "" ) continue;
+      pair = pairs[i].split("=");
+      obj[ decodeURIComponent( pair[0] ) ] = decodeURIComponent( pair[1] );
+    }
+    return obj;
+  }
+  $(function () {
+    var params = searchToObject();
+    var APP_ID = params["APP_ID"];
+    var n = params["APP_NAME"];
+    var size = params["SIZE"] || 0;
+
+    $(".header-title").text(n);
+    var main = $("[role=main]");
+    for (var i = 1; i <= size; i++) {
+      // if (i > 1) {
+      //   main.append(
+      //     // "<div data-icon='arrow-d' class='ui-icon-arrow-d'>arrow-d</div>"
+      //     $("<div　style=\"text-align:center;\" > ⬇ </div>")
+      //   );
+      // }
+      var img = $("<img></img>");
+      img.addClass("help-img")
+        .attr("src", "./images/" + APP_ID + "_" + i + ".jpg");
+      main.append(img);
+    }
+    // main.trigger("create");
+
+  });
+
+
+
+
+</script>
+
+</html>

@@ -1,20 +1,142 @@
 <html lang="ko-KR">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-<title>제로파크 도움말</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <title>제로파크 결제확인 방법</title>
+  <!--  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>-->
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!--  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
   <style>
-    * {
-      margin: 0px;
-      padding: 0px;
+    .ui-title {
+      margin: 0.0em !important;
     }
-    .how-to-use {
-      width: 100%;
-      margin:10px auto 20px auto;
+
+    #app-list-view li {
+      line-height: 150%;
+    }
+
+    .app-com {
+      font-size: 60%;
     }
   </style>
 </head>
 <body>
-<img class="how-to-use" src="Xbanner_ZeroPark_B_20190724.png"/>
+
+<div data-role="page"
+>
+  <!--     class="jqm-demos" data-quicklinks="true"-->
+
+  <div data-role="header">
+    <h4>
+      거래일련번호(승인번호)는
+      사용하시는
+      제로페이 앱에 따라 위치가 조금씩 다릅니다.
+    </h4>
+    <h5>
+      끝 3자리만 제로파크의 결제확인 메뉴에서 입력하시면 됩니다.
+    </h5>
+  </div>
+
+  <div role="main" class="ui-content Zjqm-content">
+
+    <ul data-role="listview" id="app-list-view">
+    </ul>
+
+  </div>
+
+
+  <h5> 리스트에 없는 앱의 경우,
+    사용하시는 은행/간편결제 앱의 결제내역 또는 전자영수증 등의 항목에서 제로페이 결제내역 및 거래일련번호를 확인하실 수 있습니다.
+    <br/>
+    자세한 확인 방법은 해당 앱 운영사에 문의 바랍니다
+  </h5>
+
+</div>
+
 </body>
+
+<script>
+  var app_list =
+    [
+      {
+        "APP_ID": "001",
+        "APP_NAME": "하나멤버스",
+        "APP_COMPANY": "keb하나은행", "SIZE": 4
+      },
+      {
+        "APP_ID": "002",
+        "APP_NAME": "케이뱅크",
+        "APP_COMPANY": "케이뱅크은행", "SIZE": 4
+      },
+      {
+        "APP_ID": "003",
+        "APP_NAME": "신한SOL",
+        "APP_COMPANY": "신한은행", "SIZE": 2
+      },
+      {
+        "APP_ID": "007",
+        "APP_NAME": "네이버앱",
+        "APP_COMPANY": "네이버페이", "SIZE": 4
+      },
+      {
+        "APP_ID": "009",
+        "APP_NAME": "머니트리",
+        "APP_COMPANY": "갤럭시아 컴즈", "SIZE": 4
+      },
+      {
+        "APP_ID": "010",
+        "APP_NAME": "PAYCO",
+        "APP_COMPANY": "nhn페이코", "SIZE": 4
+      },
+      {
+        "APP_ID": "011",
+        "APP_NAME": "리브",
+        "APP_COMPANY": "kb국민은행", "SIZE": 3
+      },
+      {
+        "APP_ID": "012",
+        "APP_NAME": "i-one뱅크개인",
+        "APP_COMPANY": "ibk기업은행", "SIZE": 5
+      },
+      {
+        "APP_ID": "014",
+        "APP_NAME": "뱅크페이",
+        "APP_COMPANY": "뱅크페이", "SIZE": 4
+      },
+      {
+        "APP_ID": "016",
+        "APP_NAME": "우리은행 원터치 개인",
+        "APP_COMPANY": "우리은행", "SIZE": 3
+      },
+    ]
+  ;
+  $(function () {
+
+    // $.mobile.changePage("index.html", {reloadPage : true});
+
+    var lv = $("#app-list-view");
+    app_list.forEach(function (r, idx) {
+      console.log(r);
+      var tag_li = $("<li></li>");
+      var tag_a = $("<a></a>");
+      tag_a
+        .attr("href", "app.html?APP_ID=" + r["APP_ID"]
+          + "&SIZE=" + r["SIZE"]
+          + "&APP_NAME=" + encodeURIComponent(r["APP_NAME"])
+        )
+        .html(r["APP_NAME"]
+          + " <span class='app-com'>( " + r["APP_COMPANY"] + " )</span>"
+        )
+      ;
+      tag_li.append(tag_a);
+      lv.append(tag_li);
+    });
+    // lv.listview('refresh');
+
+
+  });
+
+
+</script>
+
 </html>
