@@ -43,16 +43,12 @@
     </ul>
 
   </div>
-
-
   <h5 style="line-height: 150%;"> 리스트에 없는 앱의 경우,
     사용하시는 은행/간편결제 앱의 결제내역 또는 전자영수증 등의 항목에서 제로페이 결제내역 및 거래일련번호를 확인하실 수 있습니다.
     <br/>
     자세한 확인 방법은 해당 앱 운영사에 문의 바랍니다
   </h5>
-
 </div>
-
 </body>
 
 <script>
@@ -116,12 +112,10 @@
     ]
   ;
   $(function () {
-
     // $.mobile.changePage("index.html", {reloadPage : true});
-
     var lv = $("#app-list-view");
     app_list.forEach(function (r, idx) {
-      console.log(r);
+//      console.log(r);
       var tag_li = $("<li></li>");
       var tag_a = $("<a></a>");
       tag_a
@@ -131,16 +125,12 @@
         )
         .html(r["APP_NAME"]
           + " <span class='app-com'>( " + r["APP_COMPANY"] + " )</span>"
-        )
-      ;
+        );
       tag_li.append(tag_a);
       lv.append(tag_li);
     });
     // lv.listview('refresh');
-
-
   });
-
 
 </script>
 
